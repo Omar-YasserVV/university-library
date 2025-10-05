@@ -1,0 +1,21 @@
+import { z } from "zod";
+
+export const signUpSchema = z.object({
+  fullName: z.string().min(2, "Full name must be at least 2 characters long"),
+  email: z.string().email("Invalid email address"),
+  universityId: z.coerce.number(),
+  // .min(5, "University ID must be at least 5 characters long"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters long")
+    .nonempty("Password is required"),
+  //   universityCard: z.instanceof(File, "University card is required"),
+});
+
+export const signInSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z
+    .string()
+    .nonempty("Password is required")
+    .min(6, "Password must be at least 6 characters long"),
+});
