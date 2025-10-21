@@ -1,10 +1,15 @@
 import { z } from "zod";
 
 export const signUpSchema = z.object({
-  fullName: z.string().min(2, "Full name must be at least 2 characters long"),
-  email: z.string().email("Invalid email address"),
-  universityId: z.coerce.number(),
-  // .min(5, "University ID must be at least 5 characters long"),
+  fullName: z
+    .string()
+    .min(2, "Full name must be at least 2 characters long")
+    .nonempty("Full name is required"),
+  email: z
+    .string()
+    .email("Invalid email address")
+    .nonempty("Email is required"),
+  universityId: z.coerce.number().min(1, "University ID is required"),
   password: z
     .string()
     .min(6, "Password must be at least 6 characters long")
@@ -13,9 +18,9 @@ export const signUpSchema = z.object({
 });
 
 export const signInSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: z.string().email().nonempty("Email is required"),
   password: z
     .string()
-    .nonempty("Password is required")
-    .min(6, "Password must be at least 6 characters long"),
+    .min(6, "Password must be at least 6 characters long")
+    .nonempty("Password is required"),
 });

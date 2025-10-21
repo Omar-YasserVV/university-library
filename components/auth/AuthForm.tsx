@@ -9,7 +9,7 @@ import {
   useForm,
   UseFormReturn,
 } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { ZodType } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -44,7 +44,6 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  // 2. Define a submit handler.
   const handleSubmit: SubmitHandler<T> = async (data) => {};
 
   return (
